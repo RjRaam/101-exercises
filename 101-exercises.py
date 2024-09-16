@@ -832,6 +832,8 @@ print("Exercise 46 is correct.")
 
 # Exercise 47
 # Write a function definition named starts_with_vowel that takes in string and True if the string starts with a vowel
+def starts_with_vowel(str):
+    return str[0] in vowels
 
 assert starts_with_vowel("ubuntu") == True
 assert starts_with_vowel("banana") == False
@@ -843,6 +845,8 @@ print("Exercise 47 is correct.")
 
 # Exercise 48
 # Write a function definition named ends_with_vowel that takes in string and True if the string ends with a vowel
+def ends_with_vowel(str):
+    return any(str.endswith(ch) for ch in vowels)
 
 assert ends_with_vowel("ubuntu") == True
 assert ends_with_vowel("banana") == True
@@ -855,6 +859,8 @@ print("Exercise 48 is correct.")
 
 # Exercise 49
 # Write a function definition named starts_and_ends_with_vowel that takes in string and returns True if the string starts and ends with a vowel
+def starts_and_ends_with_vowel(str):
+    return starts_with_vowel(str) and ends_with_vowel(str)
 
 assert starts_and_ends_with_vowel("ubuntu") == True
 assert starts_and_ends_with_vowel("banana") == False
@@ -868,6 +874,8 @@ print("Exercise 49 is correct.")
 
 # Exercise 50
 # Write a function definition named first that takes in sequence and returns the first value of that sequence.
+def first(val):
+    return val[0]
 
 assert first("ubuntu") == "u"
 assert first([1, 2, 3]) == 1
@@ -879,6 +887,8 @@ print("Exercise 50 is correct.")
 
 # Exercise 51
 # Write a function definition named second that takes in sequence and returns the second value of that sequence.
+def second(val):
+    return first(val[1:])
 
 assert second("ubuntu") == "b"
 assert second([1, 2, 3]) == 2
@@ -890,6 +900,8 @@ print("Exercise 51 is correct.")
 
 # Exercise 52
 # Write a function definition named third that takes in sequence and returns the third value of that sequence.
+def third(val):
+    return first(val[2:])
 
 assert third("ubuntu") == "u"
 assert third([1, 2, 3]) == 3
@@ -901,6 +913,8 @@ print("Exercise 52 is correct.")
 
 # Exercise 53
 # Write a function definition named forth that takes in sequence and returns the forth value of that sequence.
+def forth(val):
+    return first(val[3:])
 
 assert forth("ubuntu") == "n"
 assert forth([1, 2, 3, 4]) == 4
@@ -912,6 +926,8 @@ print("Exercise 53 is correct.")
 
 # Exercise 54
 # Write a function definition named last that takes in sequence and returns the last value of that sequence.
+def last(val):
+    return val[-1]
 
 assert last("ubuntu") == "u"
 assert last([1, 2, 3, 4]) == 4
@@ -924,6 +940,8 @@ print("Exercise 54 is correct.")
 
 # Exercise 55
 # Write a function definition named second_to_last that takes in sequence and returns the second to last value of that sequence.
+def second_to_last(val):
+    return val[-2]
 
 assert second_to_last("ubuntu") == "t"
 assert second_to_last([1, 2, 3, 4]) == 3
@@ -936,6 +954,8 @@ print("Exercise 55 is correct.")
 
 # Exercise 56
 # Write a function definition named third_to_last that takes in sequence and returns the third to last value of that sequence.
+def third_to_last(val):
+    return val[-3]
 
 assert third_to_last("ubuntu") == "n"
 assert third_to_last([1, 2, 3, 4]) == 2
@@ -948,6 +968,8 @@ print("Exercise 56 is correct.")
 
 # Exercise 57
 # Write a function definition named first_and_second that takes in sequence and returns the first and second value of that sequence as a list
+def first_and_second(val):
+    return val[:2]
 
 assert first_and_second([1, 2, 3, 4]) == [1, 2]
 assert first_and_second(["python", "is", "awesome"]) == ["python", "is"]
@@ -959,6 +981,8 @@ print("Exercise 57 is correct.")
 
 # Exercise 58
 # Write a function definition named first_and_last that takes in sequence and returns the first and last value of that sequence as a list
+def first_and_last(val):
+    return val[::len(val)-1]
 
 assert first_and_last([1, 2, 3, 4]) == [1, 4]
 assert first_and_last(["python", "is", "awesome"]) == ["python", "awesome"]
@@ -970,6 +994,10 @@ print("Exercise 58 is correct.")
 
 # Exercise 59
 # Write a function definition named first_to_last that takes in sequence and returns the sequence with the first value moved to the end of the sequence.
+def first_to_last(list):
+    merge_list = list[1:] + list[:1]
+    print(merge_list)
+    return merge_list
 
 assert first_to_last([1, 2, 3, 4]) == [2, 3, 4, 1]
 assert first_to_last(["python", "is", "awesome"]) == ["is", "awesome", "python"]
@@ -983,6 +1011,8 @@ print("Exercise 59 is correct.")
 
 # Exercise 60
 # Write a function definition named sum_all that takes in sequence of numbers and returns all the numbers added together.
+def sum_all(list):
+    return sum(list)
 
 assert sum_all([1, 2, 3, 4]) == 10
 assert sum_all([3, 3, 3]) == 9
@@ -994,6 +1024,8 @@ print("Exercise 60 is correct.")
 
 # Exercise 61
 # Write a function definition named mean that takes in sequence of numbers and returns the average value
+def mean(list):
+    return sum_all(list)/len(list)
 
 assert mean([1, 2, 3, 4]) == 2.5
 assert mean([3, 3, 3]) == 3
@@ -1005,7 +1037,8 @@ print("Exercise 61 is correct.")
 
 # Exercise 62
 # Write a function definition named median that takes in sequence of numbers and returns the average value
-
+def median(list):
+    return
 assert median([1, 2, 3, 4, 5]) == 3.0
 assert median([1, 2, 3]) == 2.0
 assert median([1, 5, 6]) == 5.0
