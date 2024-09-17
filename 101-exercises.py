@@ -1038,7 +1038,10 @@ print("Exercise 61 is correct.")
 # Exercise 62
 # Write a function definition named median that takes in sequence of numbers and returns the average value
 def median(list):
-    return
+    mid = len(list) // 2
+    list.sort()
+    return ((list[mid-1] + list[mid]) / 2.0) if len(list) % 2 == 0 else list[mid]
+
 assert median([1, 2, 3, 4, 5]) == 3.0
 assert median([1, 2, 3]) == 2.0
 assert median([1, 5, 6]) == 5.0
@@ -1050,6 +1053,14 @@ print("Exercise 62 is correct.")
 
 # Exercise 63
 # Write a function definition named mode that takes in sequence of numbers and returns the most commonly occuring value
+def mode(list):
+    dict = {}
+    count, elem = 0, ''
+    for val in list:
+        dict[val] = dict.get(val, 0) + 1
+        if dict[val] > count:
+            count, elem = dict[val], val
+    return elem
 
 assert mode([1, 2, 2, 3, 4]) == 2
 assert mode([1, 1, 2, 3]) == 1
@@ -1061,7 +1072,11 @@ print("Exercise 63 is correct.")
 
 # Exercise 64
 # Write a function definition named product_of_all that takes in sequence of numbers and returns the product of multiplying all the numbers together
-
+def product_of_all(list):
+    product = 1
+    for i in list:
+        product *= i
+    return product
 assert product_of_all([1, 2, 3]) == 6
 assert product_of_all([3, 4, 5]) == 60
 assert product_of_all([2, 2, 3, 0]) == 0
@@ -1074,7 +1089,9 @@ print("Exercise 64 is correct.")
 
 # Exercise 65
 # Write a function definition named get_highest_number that takes in sequence of numbers and returns the largest number.
-
+def get_highest_number(list):
+    list.sort(reverse=True)
+    return list[0]
 assert get_highest_number([1, 2, 3]) == 3
 assert get_highest_number([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]) == 5
 assert get_highest_number([-5, -3, 1]) == 1
@@ -1085,7 +1102,9 @@ print("Exercise 65 is correct.")
 
 # Exercise 66
 # Write a function definition named get_smallest_number that takes in sequence of numbers and returns the smallest number.
-
+def get_smallest_number(list):
+    list.sort()
+    return list[0]
 assert get_smallest_number([1, 3, 2]) == 1
 assert get_smallest_number([5, -5, -4, -3, -2, -1, 1, 2, 3, 4]) == -5
 assert get_smallest_number([-4, -3, 1, -10]) == -10
@@ -1096,6 +1115,9 @@ print("Exercise 66 is correct.")
 
 # Exercise 67
 # Write a function definition named only_odd_numbers that takes in sequence of numbers and returns the odd numbers in a list.
+def only_odd_numbers(list1):
+    # return [num for num in list1 if num %2 != 0]
+    return list(filter(lambda num: (num%2 != 0), list1))
 
 assert only_odd_numbers([1, 2, 3]) == [1, 3]
 assert only_odd_numbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]) == [-5, -3, -1, 1, 3, 5]
@@ -1108,7 +1130,8 @@ print("Exercise 67 is correct.")
 
 # Exercise 68
 # Write a function definition named only_even_numbers that takes in sequence of numbers and returns the even numbers in a list.
-
+def only_even_numbers(list1):
+    return [num for num in list1 if num % 2 == 0]
 assert only_even_numbers([1, 2, 3]) == [2]
 assert only_even_numbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]) == [-4, -2, 2, 4]
 assert only_even_numbers([-4, -3, 1]) == [-4]
@@ -1120,7 +1143,8 @@ print("Exercise 68 is correct.")
 
 # Exercise 69
 # Write a function definition named only_positive_numbers that takes in sequence of numbers and returns the positive numbers in a list.
-
+def only_positive_numbers(list1):
+    return list(filter(lambda num: num > 0, list1))
 assert only_positive_numbers([1, 2, 3]) == [1, 2, 3]
 assert only_positive_numbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
 assert only_positive_numbers([-4, -3, 1]) == [1]
@@ -1131,7 +1155,8 @@ print("Exercise 69 is correct.")
 
 # Exercise 70
 # Write a function definition named only_negative_numbers that takes in sequence of numbers and returns the negative numbers in a list.
-
+def only_negative_numbers(list1):
+    return [num for num in list1 if num < 0]
 assert only_negative_numbers([1, 2, 3]) == []
 assert only_negative_numbers([-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]) == [-5, -4, -3, -2, -1]
 assert only_negative_numbers([-4, -3, 1]) == [-4, -3]
@@ -1142,7 +1167,12 @@ print("Exercise 70 is correct.")
 
 # Exercise 71
 # Write a function definition named has_evens that takes in sequence of numbers and returns True if there are any even numbers in the sequence
-
+def has_evens(list):
+    for num in list:
+        if num %2 == 0:
+            return True
+    else:
+        return False
 assert has_evens([1, 2, 3]) == True
 assert has_evens([2, 5, 6]) == True
 assert has_evens([3, 3, 3]) == False
@@ -1154,7 +1184,13 @@ print("Exercise 71 is correct.")
 
 # Exercise 72
 # Write a function definition named count_evens that takes in sequence of numbers and returns the number of even numbers
-
+def count_evens(list):
+    count = 0
+    for num in list:
+        if num %2 == 0:
+            count += 1
+    else:
+        return count
 assert count_evens([1, 2, 3]) == 1
 assert count_evens([2, 5, 6]) == 2
 assert count_evens([3, 3, 3]) == 0
@@ -1166,7 +1202,12 @@ print("Exercise 72 is correct.")
 
 # Exercise 73
 # Write a function definition named has_odds that takes in sequence of numbers and returns True if there are any odd numbers in the sequence
-
+def has_odds(list):
+    for num in list:
+        if num %2 != 0:
+            return True
+    else:
+        return False
 assert has_odds([1, 2, 3]) == True
 assert has_odds([2, 5, 6]) == True
 assert has_odds([3, 3, 3]) == True
@@ -1178,7 +1219,13 @@ print("Exercise 73 is correct.")
 
 # Exercise 74
 # Write a function definition named count_odds that takes in sequence of numbers and returns True if there are any odd numbers in the sequence
-
+def count_odds(list):
+    count = 0
+    for num in list:
+        if num %2 != 0:
+           count += 1
+    else:
+        return count
 assert count_odds([1, 2, 3]) == 2
 assert count_odds([2, 5, 6]) == 1
 assert count_odds([3, 3, 3]) == 3
@@ -1190,7 +1237,9 @@ print("Exercise 74 is correct.")
 
 # Exercise 75
 # Write a function definition named count_negatives that takes in sequence of numbers and returns a count of the number of negative numbers
-
+def count_negatives(list):
+    negative_list = [ num for num in list if num < 0]
+    return len(negative_list)
 assert count_negatives([1, -2, 3]) == 1
 assert count_negatives([2, -5, -6]) == 2
 assert count_negatives([3, 3, 3]) == 0
@@ -1201,7 +1250,9 @@ print("Exercise 75 is correct.")
 
 # Exercise 76
 # Write a function definition named count_positives that takes in sequence of numbers and returns a count of the number of positive numbers
-
+def count_positives(list):
+    positive_list = [ num for num in list if num > 0]
+    return len(positive_list)
 assert count_positives([1, -2, 3]) == 2
 assert count_positives([2, -5, -6]) == 1
 assert count_positives([3, 3, 3]) == 3
@@ -1213,7 +1264,8 @@ print("Exercise 76 is correct.")
 
 # Exercise 77
 # Write a function definition named only_positive_evens that takes in sequence of numbers and returns a list containing all the positive evens from the sequence
-
+def only_positive_evens(list):
+    return only_even_numbers(only_positive_numbers(list))
 assert only_positive_evens([1, -2, 3]) == []
 assert only_positive_evens([2, -5, -6]) == [2]
 assert only_positive_evens([3, 3, 4, 6]) == [4, 6]
@@ -1225,7 +1277,8 @@ print("Exercise 77 is correct.")
 
 # Exercise 78
 # Write a function definition named only_positive_odds that takes in sequence of numbers and returns a list containing all the positive odd numbers from the sequence
-
+def only_positive_odds(list):
+    return only_odd_numbers(only_positive_numbers(list))
 assert only_positive_odds([1, -2, 3]) == [1, 3]
 assert only_positive_odds([2, -5, -6]) == []
 assert only_positive_odds([3, 3, 4, 6]) == [3, 3]
@@ -1237,7 +1290,8 @@ print("Exercise 78 is correct.")
 
 # Exercise 79
 # Write a function definition named only_negative_evens that takes in sequence of numbers and returns a list containing all the negative even numbers from the sequence
-
+def only_negative_evens(list):
+    return only_negative_numbers(only_even_numbers(list))
 assert only_negative_evens([1, -2, 3]) == [-2]
 assert only_negative_evens([2, -5, -6]) == [-6]
 assert only_negative_evens([3, 3, 4, 6]) == []
@@ -1249,7 +1303,8 @@ print("Exercise 79 is correct.")
 
 # Exercise 80
 # Write a function definition named only_negative_odds that takes in sequence of numbers and returns a list containing all the negative odd numbers from the sequence
-
+def only_negative_odds(list):
+    return only_odd_numbers(only_negative_numbers(list))
 assert only_negative_odds([1, -2, 3]) == []
 assert only_negative_odds([2, -5, -6]) == [-5]
 assert only_negative_odds([3, 3, 4, 6]) == []
