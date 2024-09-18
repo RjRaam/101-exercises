@@ -1316,7 +1316,16 @@ print("Exercise 80 is correct.")
 
 # Exercise 81
 # Write a function definition named shortest_string that takes in a list of strings and returns the shortest string in the list.
-
+def shortest_string(list):
+    itr = iter(list)
+    str = next(itr)
+    length= len(str)
+    for item in itr:
+        if len(item) < length:
+            length = len(item)
+            str = item
+    else:
+        return str
 assert shortest_string(["kiwi", "mango", "strawberry"]) == "kiwi"
 assert shortest_string(["hello", "everybody"]) == "hello"
 assert shortest_string(["mary", "had", "a", "little", "lamb"]) == "a"
@@ -1327,7 +1336,16 @@ print("Exercise 81 is correct.")
 
 # Exercise 82
 # Write a function definition named longest_string that takes in sequence of strings and returns the longest string in the list.
-
+def longest_string(list):
+    itr = iter(list)
+    str = next(itr)
+    length= len(str)
+    for item in itr:
+        if len(item) > length:
+            length = len(item)
+            str = item
+    else:
+        return str
 assert longest_string(["kiwi", "mango", "strawberry"]) == "strawberry"
 assert longest_string(["hello", "everybody"]) == "everybody"
 assert longest_string(["mary", "had", "a", "little", "lamb"]) == "little"
@@ -1348,7 +1366,8 @@ print(set([1, 2, 2, 3, 3, 3, 4, 4, 4, 4]))
 
 # Exercise 83
 # Write a function definition named get_unique_values that takes in a list and returns a set with only the unique values from that list.
-
+def get_unique_values(list):
+    return set(list)
 assert get_unique_values(["ant", "ant", "mosquito", "mosquito", "ladybug"]) == {"ant", "mosquito", "ladybug"}
 assert get_unique_values(["b", "a", "n", "a", "n", "a", "s"]) == {"b", "a", "n", "s"}
 assert get_unique_values(["mary", "had", "a", "little", "lamb", "little", "lamb", "little", "lamb"]) == {"mary", "had",
@@ -1361,7 +1380,8 @@ print("Exercise 83 is correct.")
 
 # Exercise 84
 # Write a function definition named get_unique_values_from_two_lists that takes two lists and returns a single set with only the unique values
-
+def get_unique_values_from_two_lists(list1, list2):
+    return set(list1 + list2)
 assert get_unique_values_from_two_lists([5, 1, 2, 3], [3, 4, 5, 5]) == {1, 2, 3, 4, 5}
 assert get_unique_values_from_two_lists([1, 1], [2, 2, 3]) == {1, 2, 3}
 assert get_unique_values_from_two_lists(["tomato", "mango", "kiwi"], ["eggplant", "tomato", "broccoli"]) == {"tomato",
@@ -1376,7 +1396,8 @@ print("Exercise 84 is correct.")
 
 # Exercise 85
 # Write a function definition named get_values_in_common that takes two lists and returns a single set with the values that each list has in common
-
+def get_values_in_common(list1, list2):
+    return set(set(list1) & set(list2))
 assert get_values_in_common([5, 1, 2, 3], [3, 4, 5, 5]) == {3, 5}
 assert get_values_in_common([1, 2], [2, 2, 3]) == {2}
 assert get_values_in_common(["tomato", "mango", "kiwi"], ["eggplant", "tomato", "broccoli"]) == {"tomato"}
@@ -1387,7 +1408,9 @@ print("Exercise 85 is correct.")
 
 # Exercise 86
 # Write a function definition named get_values_not_in_common that takes two lists and returns a single set with the values that each list does not have in common
-
+def get_values_not_in_common(list1, list2):
+    # return set(set(list1) ^ set(list2))
+    return set(set(list1).symmetric_difference(set(list2)))
 assert get_values_not_in_common([5, 1, 2, 3], [3, 4, 5, 5]) == {1, 2, 4}
 assert get_values_not_in_common([1, 1], [2, 2, 3]) == {1, 2, 3}
 assert get_values_not_in_common(["tomato", "mango", "kiwi"], ["eggplant", "tomato", "broccoli"]) == {"mango", "kiwi",
@@ -1421,7 +1444,8 @@ thomas_paper = {
 
 # Exercise 87
 # Write a function named get_paper_title that takes in a dictionary and returns the title property
-
+def get_paper_title(book):
+    return book['title']
 assert get_paper_title(tukey_paper) == "The Future of Data Analysis"
 assert get_paper_title(thomas_paper) == "A mathematical model of glutathione metabolism"
 print("Exercise 87 is correct.")
@@ -1431,7 +1455,8 @@ print("Exercise 87 is correct.")
 
 # Exercise 88
 # Write a function named get_year_published that takes in a dictionary and returns the value behind the "year_published" key.
-
+def get_year_published(book):
+    return int(book['year_published'])
 assert get_year_published(tukey_paper) == 1962
 assert get_year_published(thomas_paper) == 2008
 print("Exercise 88 is correct.")
@@ -1451,7 +1476,8 @@ book = {
 
 # Exercise 89
 # Write a function named get_price that takes in a dictionary and returns the price
-
+def get_price(book):
+    return float(book['price'])
 assert get_price(book) == 36.99
 print("Exercise 89 is complete.")
 
@@ -1461,7 +1487,8 @@ print("Exercise 89 is complete.")
 # Exercise 90
 # Write a function named get_book_author that takes in a dictionary (the above declared book variable) and returns the author's name
 
-
+def get_book_author(book):
+    return book['author']
 assert get_book_author(book) == "Frances Buontempo"
 print("Exercise 90 is complete.")
 
@@ -1500,7 +1527,8 @@ books = [
 
 # Exercise 91
 # Write a function named get_number_of_books that takes in a list of objects and returns the number of dictionaries in that list.
-
+def get_number_of_books(books):
+    return len(books)
 assert get_number_of_books(books) == 4
 print("Exercise 91 is complete.")
 
@@ -1509,7 +1537,12 @@ print("Exercise 91 is complete.")
 
 # Exercise 92
 # Write a function named total_of_book_prices that takes in a list of dictionaries and returns the sum total of all the book prices added together
-
+def total_of_book_prices(books: object) -> object:
+    sum = float(0.0)
+    for book in books:
+        sum += float(book['price'])
+    else:
+        return sum
 assert total_of_book_prices(books) == 122.9
 print("Exercise 92 is complete.")
 
@@ -1518,7 +1551,8 @@ print("Exercise 92 is complete.")
 
 # Exercise 93
 # Write a function named get_average_book_price that takes in a list of dictionaries and returns the average book price.
-
+def get_average_book_price(books):
+    return total_of_book_prices(books) / len(books)
 assert get_average_book_price(books) == 30.725
 print("Exercise 93 is complete.")
 
@@ -1528,7 +1562,17 @@ print("Exercise 93 is complete.")
 # Exercise 94
 # Write a function called highest_price_book that takes in the above defined list of dictionaries "books" and returns the dictionary containing the title, price, and author of the book with the highest priced book.
 # Hint: Much like sometimes start functions with a variable set to zero, you may want to create a dictionary with the price set to zero to compare to each dictionary's price in the list
-
+def highest_price_book(books):
+    high_cost_book = {
+        "title": "",
+        "price": 0.0,
+        "author": ""
+    }
+    for book in books:
+        if high_cost_book['price'] < book['price']:
+            high_cost_book = book
+    else:
+        return high_cost_book
 assert highest_price_book(books) == {
     "title": "The Visual Display of Quantitative Information",
     "price": 38.00,
@@ -1544,7 +1588,17 @@ print("Exercise 94 is complete")
 # Write a function called lowest_priced_book that takes in the above defined list of dictionaries "books" and returns the dictionary containing the title, price, and author of the book with the lowest priced book.
 # Hint: Much like sometimes start functions with a variable set to zero or float('inf'), you may want to create a dictionary with the price set to float('inf') to compare to each dictionary in the list
 
-
+def lowest_price_book(books):
+    low_cost_book = {
+        "title": "",
+        "price": float('inf'),
+        "author": ""
+    }
+    for book in books:
+        if low_cost_book['price'] > book['price']:
+            low_cost_book = book
+    else:
+        return low_cost_book
 assert lowest_price_book(books) == {
     "title": "Weapons of Math Destruction",
     "author": "Cathy O'Neil",
@@ -1592,7 +1646,8 @@ shopping_cart = {
 # Exercise 96
 # Write a function named get_tax_rate that takes in the above shopping cart as input and returns the tax rate.
 # Hint: How do you access a key's value on a dictionary? The tax rate is one key of the entire shopping_cart dictionary.
-
+def get_tax_rate(cart):
+    return cart['tax']
 assert get_tax_rate(shopping_cart) == .08
 print("Exercise 96 is complete")
 
@@ -1602,7 +1657,8 @@ print("Exercise 96 is complete")
 # Exercise 97
 # Write a function named number_of_item_types that takes in the shopping cart as input and returns the number of unique item types in the shopping cart. 
 # We're not yet using the quantity of each item, but rather focusing on determining how many different types of items are in the cart.
-
+def number_of_item_types(cart):
+    return len(cart['items'])
 assert number_of_item_types(shopping_cart) == 5
 print("Exercise 97 is complete.")
 
@@ -1612,7 +1668,11 @@ print("Exercise 97 is complete.")
 # Exercise 98
 # Write a function named total_number_of_items that takes in the shopping cart as input and returns the total number all item quantities.
 # This should return the sum of all of the quantities from each item type
-
+def total_number_of_items(cart):
+    sum = 0
+    for item in cart['items']:
+        sum += item['quantity']
+    return sum
 assert total_number_of_items(shopping_cart) == 17
 print("Exercise 98 is complete.")
 
@@ -1622,6 +1682,8 @@ print("Exercise 98 is complete.")
 # Exercise 99
 # Write a function named get_average_item_price that takes in the shopping cart as an input and returns the average of all the item prices.
 # Hint - This should determine the total price divided by the number of types of items. This does not account for each item type's quantity.
+def get_average_item_price(cart):
+    return total_of_book_prices(cart['items']) / len(cart['items'])
 assert get_average_item_price(shopping_cart) == 2.1420000000000003
 print("Exercise 99 is complete.")
 
@@ -1631,7 +1693,14 @@ print("Exercise 99 is complete.")
 # Exercise 100
 # Write a function named get_average_spent_per_item that takes in the shopping cart and returns the average of summing each item's quanties times that item's price.
 # Hint: You may need to set an initial total price and total total quantity to zero, then sum up and divide that total price by the total quantity
-
+def get_average_spent_per_item(cart):
+    total_price = 0
+    total_quantity = 0
+    for item in cart['items']:
+        total_quantity += item['quantity']
+        total_price += item['quantity'] * item['price']
+    else:
+        return total_price / total_quantity
 assert get_average_spent_per_item(shopping_cart) == 1.333529411764706
 print("Exercise 100 is complete.")
 
@@ -1642,8 +1711,20 @@ print("Exercise 100 is complete.")
 # Write a function named most_spent_on_item that takes in the shopping cart as input and returns the dictionary associated with the item that has the highest price*quantity.
 # Be sure to do this as programmatically as possible. 
 # Hint: Similarly to how we sometimes begin a function with setting a variable to zero, we need a starting place:
-# Hint: Consider creating a variable that is a dictionary with the keys "price" and "quantity" both set to 0. You can then compare each item's price and quantity total to the one from "most"
-
+1   # Hint: Consider creating a variable that is a dictionary with the keys "price" and "quantity" both set to 0. You can then compare each item's price and quantity total to the one from "most"
+def get_total_price(item):
+    return item['price'] * item['quantity']
+def most_spent_on_item(cart):
+    most_spent_item = {
+        "title": "",
+        "price": 0.0,
+        "quantity": 0
+    }
+    for item in cart['items']:
+        if get_total_price(most_spent_item) < get_total_price(item):
+            most_spent_item = item
+    else:
+        return most_spent_item
 assert most_spent_on_item(shopping_cart) == {
     "title": "chocolate",
     "price": 0.75,
